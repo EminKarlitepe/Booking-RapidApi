@@ -1,0 +1,70 @@
+﻿@using BookingRapidApi.Models
+@model BookingRapidApi.Models.BookingHotelViewModel
+
+@if (Model != null && Model.status && Model.data != null && Model.data.hotels != null)
+{
+    @if (Model.data.hotels.Any())
+    {
+        <section class="section bg-light">
+            <div class="container">
+                <div class="row">
+                    @foreach (var hotel in Model.data.hotels)
+                    {
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card hotel-card h-100 shadow-sm border-0">
+                                @if (hotel.property.photoUrls != null && hotel.property.photoUrls.Any())
+                                {
+                                    <img src="@hotel.property.photoUrls.First()" class="card-img-top" alt="@hotel.property.name" style="height: 200px; object-fit: cover;">
+                                }
+                                else
+                                {
+                                    <img src="/sogo-master/images/placeholder_hotel.jpg" class="card-img-top" alt="Görsel Yok" style="height: 200px; object-fit: cover;">
+                                }
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-primary">@hotel.property.name</h5>
+                                    <p class="card-text mb-1">
+                                        <small class="text-muted">
+                                            <i class="fa fa-star text-warning"></i> @hotel.property.reviewScore (@hotel.property.reviewScoreWord - @hotel.property.reviewCount değerlendirme)
+                                        </small>
+                                    </p>
+                                    <p class="card-text mb-1">
+                                        <small class="text-muted">
+                                            <i class="fa fa-map-marker-alt"></i> Konum: @hotel.property.latitude, @hotel.property.longitude
+                                        </small>
+                                    </p>
+                                    <p class="card-text mb-1">
+                                        <small class="text-muted">
+                                            <i class="fa fa-calendar-alt"></i> Giriş: @hotel.property.checkinDate
+                                        </small>
+                                    </p>
+                                    <p class="card-text mb-3">
+                                        <small class="text-muted">
+                                            <i class="fa fa-calendar-alt"></i> Çıkış: @hotel.property.checkoutDate
+                                        </small>
+                                    </p>
+                                    <div class="mt-auto">
+                                        @if (hotel.property.priceBreakdown?.grossPrice != null)
+                                        {
+                                            <h4 class="text-success">@hotel.property.priceBreakdown.grossPrice.value @hotel.property.priceBreakdown.grossPrice.currency</h4>
+                                        }
+                                        else
+                                        {
+                                            <h4 class="text-danger">Fiyat Bilgisi Yok</h4>
+                                        }
+                                        <a href="@Url.Action("HotelDetails", "BookingHotel", new { hotelId = hotel.property.id, checkinDate = hotel.property.checkinDate, departureDate = hotel.property.checkoutDate })" class="btn btn-primary btn-block mt-2">Detayları Gör</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+    else
+    {
+        <div class="container mt-5">
+            <p class="alert alert-warning">Arama kriterlerinize uygun otel bulunamadı.</p>
+        </div>
+    }
+}

@@ -1,0 +1,248 @@
+﻿@model BookingRapidApi.Models.BookingHotelViewModel
+
+@{
+    ViewData["Title"] = "Otel Arama"; 
+    Layout = "~/Views/Shared/_BookingLayout.cshtml"; 
+}
+
+<section class="site-hero overlay" style="background-image: url(/sogo-master/images/hero_4.jpg)" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row site-hero-inner justify-content-center align-items-center">
+            <div class="col-md-10 text-center" data-aos="fade-up">
+                <span class="custom-caption text-uppercase text-white d-block mb-3">Hoşgeldiniz <span class="fa fa-heart text-primary"></span></span>
+                <h1 class="heading">Zarafet ve Konforun Adresi</h1>
+            </div>
+        </div>
+    </div>
+
+    <a class="mouse smoothscroll" href="#next">
+        <div class="mouse-icon">
+            <span class="mouse-wheel"></span>
+        </div>
+    </a>
+</section>
+<section class="section bg-light pb-0" id="next">
+    <div class="container">
+        @* Arama Formu *@
+        <form asp-controller="BookingHotel" asp-action="Index" method="post">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                    <label for="p" class="font-weight-bold text-black">Şehir</label>
+                    <input type="text" id="p" name="p" class="form-control" required placeholder="Örn: Istanbul" />
+                </div>
+
+                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                    <label for="dateIn" class="font-weight-bold text-black">Giriş Tarihi</label>
+                    <input type="date" id="dateIn" name="dateIn" class="form-control" required value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                </div>
+
+                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                    <label for="dateOut" class="font-weight-bold text-black">Çıkış Tarihi</label>
+                    <input type="date" id="dateOut" name="dateOut" class="form-control" required value="@DateTime.Today.AddDays(1).ToString("yyyy-MM-dd")" />
+                </div>
+
+                <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="guest" class="font-weight-bold text-black">Yetişkin</label>
+                            <input type="number" id="guest" name="guest" min="1" class="form-control" value="1" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="children" class="font-weight-bold text-black">Çocuk</label>
+                            <input type="number" id="children" name="children" min="0" class="form-control" value="0" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 text-center mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg px-5">Otelleri Kontrol Et</button>
+                </div>
+            </div>
+        </form>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger mt-3">
+                <ul>
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <li>@error.ErrorMessage</li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+</section>
+
+@Html.Partial("_HotelListPartial", Model)
+
+<section class="section slider-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-md-7">
+                <h2 class="heading" data-aos="fade-up">Fotoğraflar</h2>
+                <p data-aos="fade-up" data-aos-delay="100">
+                    Göz alıcı manzaralar, sıcak anlar ve unutulmaz tatil deneyimleri...
+                    Galerimizde, misafirlerimizin en özel anlarından kesitler bulabilir,
+                    konaklamanız için ilham alabilirsiniz.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="home-slider major-caousel owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
+                    <div class="slider-item">
+                        <a href="images/slider-1.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/sogo-master/images/slider-1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    </div>
+                    <div class="slider-item">
+                        <a href="images/slider-2.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/sogo-master/images/slider-2.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    </div>
+                    <div class="slider-item">
+                        <a href="images/slider-3.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/sogo-master/images/slider-3.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    </div>
+                    <div class="slider-item">
+                        <a href="images/slider-4.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/sogo-master/images/slider-4.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    </div>
+                    <div class="slider-item">
+                        <a href="images/slider-5.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/sogo-master/images/slider-5.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    </div>
+                    <div class="slider-item">
+                        <a href="images/slider-6.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/sogo-master/images/slider-6.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    </div>
+                    <div class="slider-item">
+                        <a href="images/slider-7.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/sogo-master/images/slider-7.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section testimonial-section">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-md-7">
+                <h2 class="heading" data-aos="fade-up">Kullanıcılarımız Ne Diyor?</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="js-carousel-2 owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
+
+                <div class="testimonial text-center slider-item">
+                    <div class="author-image mb-3">
+                        <img src="/sogo-master/images/person_1.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
+                    </div>
+                    <blockquote>
+                        <p>“Sıcakkose.com’daki fırsatlar sayesinde hayalimizdeki oteli çok uygun fiyata bulduk. Tatilimiz beklentilerimizin çok üzerindeydi!”</p>
+                    </blockquote>
+                    <p><em>&mdash; Elif Yılmaz</em></p>
+                </div>
+
+                <div class="testimonial text-center slider-item">
+                    <div class="author-image mb-3">
+                        <img src="/sogo-master/images/person_2.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
+                    </div>
+                    <blockquote>
+                        <p>“Rezervasyonumu hızlıca yaptım, tüm süreç sorunsuz ilerledi. Sıcakkose.com sayesinde rahat ve konforlu bir tatil yaşadık.”</p>
+                    </blockquote>
+                    <p><em>&mdash; Murat Demir</em></p>
+                </div>
+
+                <div class="testimonial text-center slider-item">
+                    <div class="author-image mb-3">
+                        <img src="/sogo-master/images/person_3.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
+                    </div>
+                    <blockquote>
+                        <p>“Sıcakkose.com’un geniş otel seçenekleri arasında tam da ihtiyacımız olan yeri kolayca bulduk. Tatilimiz çok keyifli geçti.”</p>
+                    </blockquote>
+                    <p><em>&mdash; Emin Karlıtepe</em></p>
+                </div>
+
+                <div class="testimonial text-center slider-item">
+                    <div class="author-image mb-3">
+                        <img src="/sogo-master/images/person_4.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
+                    </div>
+                    <blockquote>
+                        <p>“Sıcakkose.com’dan yaptığımız rezervasyon tam da beklediğimiz gibiydi. Fiyat-performans açısından harika bir deneyim oldu.”</p>
+                    </blockquote>
+                    <p><em>&mdash; Can Kılıç</em></p>
+                </div>
+
+                <div class="testimonial text-center slider-item">
+                    <div class="author-image mb-3">
+                        <img src="/sogo-master/images/person_5.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
+                    </div>
+                    <blockquote>
+                        <p>“Sıcakkose.com sayesinde otelimiz temiz, konforlu ve uygun fiyatlıydı. Böyle bir siteyi herkese gönül rahatlığıyla öneririm.”</p>
+                    </blockquote>
+                    <p><em>&mdash; Süleyman Yıldız</em></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section blog-post-entry bg-light">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-md-7">
+                <h2 class="heading" data-aos="fade-up">Etkinlikler</h2>
+                <p data-aos="fade-up">
+                    Çok uzaklarda, Kelime Dağları’nın ardında, Vokalia ve Consonantia ülkelerinden uzakta, kör metinler yaşar.
+                    Ayrı yaşarlar Bookmarksgrove’da, Anlamlar Kıyısı’nda, büyük bir dil okyanusunda.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="media media-custom d-block mb-4 h-100">
+                    <a href="#" class="mb-4 d-block"><img src="/sogo-master/images/img_1.jpg" alt="Resim Yer Tutucu" class="img-fluid"></a>
+                    <div class="media-body">
+                        <span class="meta-post">26 Şubat 2018</span>
+                        <h2 class="mt-0 mb-3"><a href="#">Uçuşunuzu Daha Konforlu Hale Getirecek Seyahat Tüyoları</a></h2>
+                        <p>Çok uzaklarda, Kelime Dağları’nın ardında, Vokalia ve Consonantia ülkelerinden uzakta, kör metinler yaşar.</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="200">
+                <div class="media media-custom d-block mb-4 h-100">
+                    <a href="#" class="mb-4 d-block"><img src="/sogo-master/images/img_2.jpg" alt="Resim Yer Tutucu" class="img-fluid"></a>
+                    <div class="media-body">
+                        <span class="meta-post">26 Şubat 2018</span>
+                        <h2 class="mt-0 mb-3"><a href="#">Dünyayı Gezerken Kazanmanızı Sağlayacak 5 İş Fırsatı</a></h2>
+                        <p>Ayrı yaşarlar Bookmarksgrove’da, Anlamlar Kıyısı’nda, büyük bir dil okyanusunda.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="300">
+                <div class="media media-custom d-block mb-4 h-100">
+                    <a href="#" class="mb-4 d-block"><img src="/sogo-master/images/img_3.jpg" alt="Resim Yer Tutucu" class="img-fluid"></a>
+                    <div class="media-body">
+                        <span class="meta-post">26 Şubat 2018</span>
+                        <h2 class="mt-0 mb-3"><a href="#">Seyahat Edenler İçin 30 Harika Hediye Fikri</a></h2>
+                        <p>
+                            Duden adında küçük bir nehir, onların yanından akar ve gerekli tüm düzenlemeleri sağlar.
+                            Burası cennet gibi bir ülkedir, cümlelerin kavrulmuş parçalarının ağzınıza uçtuğu yer.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-image overlay" style="background-image: url('/sogo-master/images/hero_4.jpg');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
+                <h2 class="text-white font-weight-bold">Hayalinizdeki Konaklama Burada Başlar</h2>
+            </div>
+            <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
+                <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Rezervasyona Başla</a>
+            </div>
+        </div>
+    </div>
+</section>
