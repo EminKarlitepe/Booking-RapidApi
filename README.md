@@ -70,3 +70,6 @@ Girilen kriterlere uyan oteller liste halinde gösterilir. Kullanıcılar, liste
 <img width="1915" height="955" alt="HotelList2" src="https://github.com/user-attachments/assets/f5102586-205a-4b9f-bf69-98b3bd4676a6" />
 <img width="1908" height="952" alt="HotelDetail" src="https://github.com/user-attachments/assets/466217dd-f7f9-4078-b3bd-44577534b897" />
 <img width="1915" height="952" alt="HotelDetail2" src="https://github.com/user-attachments/assets/173a58c9-7d5a-4884-b8c9-0ed86a5ff69d" />
+<img width="1914" height="952" alt="Photos" src="https://github.com/user-attachments/assets/b711ad93-dbf3-48df-9b2b-0b6af1dd93fd" />
+<img width="1912" height="953" alt="Events" src="https://github.com/user-attachments/assets/7cd9d33d-1bef-4c84-beb0-9a60c3b0b470" />
+<img width="1910" height="953" alt="Footer" src="https://github.com/user-attachments/assets/68243854-08ae-4036-90aa-2eadf43fcf73" />
