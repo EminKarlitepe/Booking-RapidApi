@@ -37,7 +37,7 @@ Girilen kriterlere uyan oteller liste halinde gösterilir. Kullanıcılar, liste
 
 ## 🛠️ Kullanılan Teknolojiler
 
-* **💻 ASP.NET Core (6.0):** Projenin temel geliştirme çatısıdır.
+* **💻 ASP.NET Core (8.0):** Projenin temel geliştirme çatısıdır.
 * **🏗️ Tek Katmanlı Mimari:** Uygulama, hızlı geliştirme ve basitlik adına tek katmanlı bir yapıda tasarlanmıştır.
 * **🌐 Booking.com API (RapidAPI Üzerinden)::** Temel otel verilerini çekmek için kullanılan ana API kaynağıdır. Projede Booking.com API'nin üç farklı endpoint'i etkin bir şekilde kullanılmıştır:
     * **🔍 Auto Complete Endpoint:** Kullanıcının girdiği şehir bilgisine karşılık gelen `City ID` ve `Destination ID` gibi konum verileri elde edildi.
